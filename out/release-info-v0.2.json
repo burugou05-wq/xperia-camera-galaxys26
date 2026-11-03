@@ -1,0 +1,24 @@
+{
+  "version": "0.2",
+  "device": "SC-51G",
+  "system": "Android17 / One UI9",
+  "date": "2026-11-03 Asia/Tokyo",
+  "apk": "xperia-camera-sc51g-oneui9-v0.2.apk",
+  "sha256": "155c4b3474ac8034cb5fe94a766b3ec0bf253702d4d192d3bce15de665628b0f",
+  "added": [
+    "supplied APK warmth gain formula connected to standard Camera2",
+    "automatic-only white balance baseline to prevent accumulated shifts",
+    "opt-in strength-adjustable experimental web-chart JPEG color transfer",
+    "EXIF retention and original-image fallback"
+  ],
+  "validated": [
+    "100000 pure math checks and EXIF segment tests",
+    "signature and ZIP alignment",
+    "device install and preview",
+    "warm/cold/warm repeat and automatic reset",
+    "4000x3000 JPEG save with correction at35%",
+    "JPEG decode and EXIF orientation retained"
+  ],
+  "reference_report": "analysis/color-reference/fit-report.json",
+  "notes": "Not Sony ISP reproduction or SC-51G calibration. Web comparison is JPEG-only; default off."
+}

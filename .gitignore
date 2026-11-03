@@ -1,0 +1,14 @@
+*.apk
+*.jks
+*.keystore
+*.idsig
+*.class
+*.jar
+__pycache__/
+decoded/
+build/
+keys/
+tools/pydeps/
+tools/framework/
+analysis/**/*.jpg
+analysis/**/*.png
