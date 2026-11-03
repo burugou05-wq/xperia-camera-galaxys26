@@ -10,7 +10,7 @@
 
 **Xperiaの撮影UIをGalaxy S26へ。音量キーでズーム、色とシャッター音も調整。**
 
-[![Download APK](https://img.shields.io/badge/Download-APK-3DDC84?logo=android&logoColor=white)](https://github.com/burugou05-wq/xperia-camera-sc51g/releases/tag/v0.2)
+[![Download APK](https://img.shields.io/badge/Download-APK-3DDC84?logo=android&logoColor=white)](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2)
 ![Device](https://img.shields.io/badge/Galaxy_S26-SC--51G-1428A0)
 ![Status](https://img.shields.io/badge/Status-Experimental-orange)
 
@@ -18,11 +18,11 @@ Xperiaカメラの操作感をGalaxy S26で試す、非公式の移植プロジ�
 
 **An experimental Xperia camera port for Samsung Galaxy S26 (SC-51G), Android 17 / One UI 9.** Features volume-key zoom, rear 0.6× / 1× / 3× presets, adjustable shutter sound, warm/cool controls and optional JPEG color correction. Tested on SC-51G only; this is an unofficial prototype, not a reproduction of Sony's imaging engine.
 
-→ **[APKをダウンロード / Download](https://github.com/burugou05-wq/xperia-camera-sc51g/releases/tag/v0.2)** · [色処理の仕組み](COLOR-PROCESSING.md)
+→ **[APKをダウンロード / Download](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2)** · [色処理の仕組み](COLOR-PROCESSING.md)
 
 ## v0.2：色処理を追加
 
-最新のAPKは [Releases](https://github.com/burugou05-wq/xperia-camera-sc51g/releases) の **Assets** にある `xperia-camera-sc51g-oneui9-v0.2.apk` です。非公式の試作版です。提供APKに残っていた暖色・寒色の計算を標準Camera2へ接続し、上部の「色」ボタンにWeb比較チャートから求めた写真用補正を追加しました。Web比較補正は初期状態ではオフです。
+最新のAPKは [Releases](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases) の **Assets** にある `xperia-camera-sc51g-oneui9-v0.2.apk` です。非公式の試作版です。提供APKに残っていた暖色・寒色の計算を標準Camera2へ接続し、上部の「色」ボタンにWeb比較チャートから求めた写真用補正を追加しました。Web比較補正は初期状態ではオフです。
 
 詳細・元資料・実機結果・制約は [色処理の説明](COLOR-PROCESSING.md) を参照してください。Sony純正の画像処理エンジン全体の移植ではありません。v0.2はプレリリースとして公開しています。
 
@@ -30,7 +30,7 @@ Xperiaカメラの操作感をGalaxy S26で試す、非公式の移植プロジ�
 
 ## インストール
 
-1. [v0.2リリース](https://github.com/burugou05-wq/xperia-camera-sc51g/releases/tag/v0.2) の **Assets** から `xperia-camera-sc51g-oneui9-v0.2.apk` をダウンロードします。
+1. [v0.2リリース](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2) の **Assets** から `xperia-camera-sc51g-oneui9-v0.2.apk` をダウンロードします。
 2. 端末でAPKを開き、表示されるインストール案内に従います。
 3. アプリを起動し、撮影に必要なカメラ・マイクなどの権限を許可します。
 
@@ -125,17 +125,17 @@ Sony / Samsungの公式プロジェクトではありません。提供APKを土
 
 **Bring the Xperia camera UI to Galaxy S26. Zoom with the volume keys and adjust color and shutter sound.**
 
-[![Download APK](https://img.shields.io/badge/Download-APK-3DDC84?logo=android&logoColor=white)](https://github.com/burugou05-wq/xperia-camera-sc51g/releases/tag/v0.2)
+[![Download APK](https://img.shields.io/badge/Download-APK-3DDC84?logo=android&logoColor=white)](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2)
 ![Device](https://img.shields.io/badge/Galaxy_S26-SC--51G-1428A0)
 ![Status](https://img.shields.io/badge/Status-Experimental-orange)
 
 An unofficial project exploring the Xperia camera interface on Galaxy S26. It provides rear 0.6× / 1× / 3× zoom presets, volume-key zoom, adjustable shutter sound, warm/cool controls and experimental color correction for saved photos.
 
-→ **[Download APK](https://github.com/burugou05-wq/xperia-camera-sc51g/releases/tag/v0.2)** · [Color-processing details (Japanese)](COLOR-PROCESSING.md)
+→ **[Download APK](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2)** · [Color-processing details (Japanese)](COLOR-PROCESSING.md)
 
 ### v0.2: Color controls
 
-The latest APK is `xperia-camera-sc51g-oneui9-v0.2.apk`, available under **Assets** on the [Releases page](https://github.com/burugou05-wq/xperia-camera-sc51g/releases). It is published as an experimental prerelease.
+The latest APK is `xperia-camera-sc51g-oneui9-v0.2.apk`, available under **Assets** on the [Releases page](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases). It is published as an experimental prerelease.
 
 The warm/cool calculation found in the supplied APK is now connected to standard Camera2 controls. A new **「色」 (Color)** button provides photo correction derived from published comparison charts. This optional correction is **off by default**. See [COLOR-PROCESSING.md (Japanese)](COLOR-PROCESSING.md) for sources, measurements and implementation details. This project does not port Sony's complete imaging engine.
 
@@ -143,7 +143,7 @@ The tested device is **Galaxy S26 SC-51G, Android 17 (API 37) / One UI 9**. The 
 
 ### Installation
 
-1. Download `xperia-camera-sc51g-oneui9-v0.2.apk` from **Assets** on the [v0.2 release page](https://github.com/burugou05-wq/xperia-camera-sc51g/releases/tag/v0.2).
+1. Download `xperia-camera-sc51g-oneui9-v0.2.apk` from **Assets** on the [v0.2 release page](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2).
 2. Open the APK on your phone and follow the installation prompts.
 3. Launch the app and grant the camera, microphone and other permissions needed for capture.
 
