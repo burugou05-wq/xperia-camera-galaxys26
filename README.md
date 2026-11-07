@@ -10,7 +10,7 @@
 
 **Xperiaの撮影UIをGalaxy S26へ。音量キーでズーム、色とシャッター音も調整。**
 
-[![Download APK](https://img.shields.io/badge/Download-APK-3DDC84?logo=android&logoColor=white)](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2)
+![Distribution](https://img.shields.io/badge/Distribution-Source_only-blue)
 ![Device](https://img.shields.io/badge/Galaxy_S26-SC--51G-1428A0)
 ![Status](https://img.shields.io/badge/Status-Experimental-orange)
 
@@ -18,25 +18,28 @@ Xperiaカメラの操作感をGalaxy S26で試す、非公式の移植プロジ�
 
 **An experimental Xperia camera port for Samsung Galaxy S26 (SC-51G), Android 17 / One UI 9.** Features volume-key zoom, rear 0.6× / 1× / 3× presets, adjustable shutter sound, warm/cool controls and optional JPEG color correction. Tested on SC-51G only; this is an unofficial prototype, not a reproduction of Sony's imaging engine.
 
-→ **[APKをダウンロード / Download](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2)** · [色処理の仕組み](COLOR-PROCESSING.md)
+→ **APKは配布していません。** [手元でビルドする](#再構築) · [配布方針](#配布方針) · [色処理の仕組み](COLOR-PROCESSING.md)
 
 ## v0.2：色処理を追加
 
-最新のAPKは [Releases](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases) の **Assets** にある `xperia-camera-sc51g-oneui9-v0.2.apk` です。非公式の試作版です。提供APKに残っていた暖色・寒色の計算を標準Camera2へ接続し、上部の「色」ボタンにWeb比較チャートから求めた写真用補正を追加しました。Web比較補正は初期状態ではオフです。
+v0.2では、提供APKに残っていた暖色・寒色の計算を標準Camera2へ接続し、上部の「色」ボタンにWeb比較チャートから求めた写真用補正を追加しました。Web比較補正は初期状態ではオフです。**ビルド済みAPKの配布は行っていません。** ソース、パッチ、ビルドスクリプトを公開し、各自の手元でビルドする形にしています（[配布方針](#配布方針)）。
 
-詳細・元資料・実機結果・制約は [色処理の説明](COLOR-PROCESSING.md) を参照してください。Sony純正の画像処理エンジン全体の移植ではありません。v0.2はプレリリースとして公開しています。
+詳細・元資料・実機結果・制約は [色処理の説明](COLOR-PROCESSING.md) を参照してください。Sony純正の画像処理エンジン全体の移植ではありません。以下の実機結果は、2026-11-03にビルドしたv0.2で取得したものです。
 
 対象はユーザー所有のGalaxy S26 SC-51G、Android 17（API 37）/ One UI 9。入力APKは `camera-2-9-a-0-24.apk`（パッケージ `com.sonyericsson.android.camera`、表示バージョン2.9.A.0.24）。入力ファイルは変更していません。提供APKには固定カメラIDやズーム処理など既存の改変が見られ、Sony公式の未改変バイナリであることは確認していません。
 
-## インストール
+## ビルドしてインストール
 
-1. [v0.2リリース](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2) の **Assets** から `xperia-camera-sc51g-oneui9-v0.2.apk` をダウンロードします。
-2. 端末でAPKを開き、表示されるインストール案内に従います。
-3. アプリを起動し、撮影に必要なカメラ・マイクなどの権限を許可します。
+配布APKはありません。手元でビルドしたAPKを端末に入れます。ビルド手順の詳細は [再構築](#再構築) にあります。
 
-同じパッケージ名 `com.sonyericsson.android.camera` の別署名アプリがあるとインストールできない場合があります。本プロジェクトの前版と公開v0.2は同じ鍵で署名しています。
+1. 対象と同一の `camera-2-9-a-0-24.apk` を用意し、リポジトリのルートに置きます。
+2. Windows では `setup-port.ps1` → `build-port.ps1`、Linux / macOS では `setup-port.sh` → `build-port.sh` を実行します。
+3. `out/xperia-camera-sc51g-test.apk` を端末へ転送し、インストールします。
+4. アプリを起動し、撮影に必要なカメラ・マイクなどの権限を許可します。
 
-配布APKのSHA-256：`155c4b3474ac8034cb5fe94a766b3ec0bf253702d4d192d3bce15de665628b0f`（[SHA256SUMS](SHA256SUMS)）。
+同じパッケージ名 `com.sonyericsson.android.camera` の別署名アプリがあるとインストールできない場合があります。ローカルビルドは初回に `keys/port-test.jks` を生成し、その鍵で署名します。過去に配布したv0.2のAPKとは署名鍵が異なるため、その上への上書き更新はできません。
+
+参考：2026-11-03に配布したv0.2のAPKのSHA-256は `155c4b3474ac8034cb5fe94a766b3ec0bf253702d4d192d3bce15de665628b0f` です。すでにダウンロード済みのコピーを照合するためだけの記録で、現在は配布していません。
 
 ## 使い方
 
@@ -92,9 +95,19 @@ Xperiaカメラの操作感をGalaxy S26で試す、非公式の移植プロジ�
 - 補正35%で4000×3000 JPEGを保存し、追加処理時間は約215〜291msでした。画像の読み取りとEXIFの向きの保持を確認しました。暖色・寒色調整は、繰り返しで補正が蓄積しないことと、自動ホワイトバランスへの復帰も確認しました。
 - 端末内のテスト用写真・短い動画は自動削除していません。
 
+## 配布方針
+
+このリポジトリは**APKを配布しません**。公開するのは、パッチ、追加コード、ビルドスクリプト、検証記録です。
+
+改変・再署名したAPKを不特定多数へ配布すると、Sony由来のアプリ本体・音源・画像などについて、権利者が与えた許諾の範囲を超えるおそれがあります。そのため2026-11-07に、v0.2として公開していたAPKの配布を取り下げました。ビルド済みAPKのミラー公開や再配布も、同じ理由で行いません。
+
+- 各自が所有する端末と、適切に入手した対象APKを使い、自分の環境でビルドしてください（[再構築](#再構築)）。
+- ビルドしたAPKは自分の端末で使う範囲にとどめ、再配布はしないでください。
+- リポジトリに含まれるのは、互換性のための差分と試作コードだけです。Sony / Samsungの公式プロジェクトではありません。
+
 ## 再構築
 
-JDK 17、Python 3、Android SDK（platforms/android-35、build-tools/36.0.0）、[Apktool 3.0.3](https://github.com/iBotPeaches/Apktool/releases/tag/v3.0.3) が必要です。ApktoolのJARを `tools/apktool.jar` に置きます。SDKは `ANDROID_SDK_ROOT` / `ANDROID_HOME` またはWindowsの既定配置から参照します。
+JDK 17、Python 3、Android SDK（platforms/android-35、build-tools/36.0.0）、[Apktool 3.0.3](https://github.com/iBotPeaches/Apktool/releases/tag/v3.0.3) が必要です。ApktoolのJARを `tools/apktool.jar` に置きます。SDKは `ANDROID_SDK_ROOT` / `ANDROID_HOME`、または各OSの既定配置（Windows: `%LOCALAPPDATA%\Android\Sdk`、macOS: `~/Library/Android/sdk`、Linux: `~/Android/Sdk`）から参照します。
 
 元APKはリポジトリに含めていません。手元で適切に入手した、対象と同一の `camera-2-9-a-0-24.apk` をルートに置いてください。別バージョンへのパッチ適用は未対応です。
 
@@ -105,7 +118,14 @@ JDK 17、Python 3、Android SDK（platforms/android-35、build-tools/36.0.0）�
 .\build-port.ps1
 ```
 
-`src/` は追加ボタン・音処理・色処理、`patches/` はCamera2互換処理、`tools/patch_port.py` は展開コードへの変更です。出力は `out/xperia-camera-sc51g-test.apk`。ローカル署名鍵は初回ビルド時に `keys/port-test.jks` に生成されます。公開APKとは鍵が異なるため、そのまま上書き更新はできません。
+```bash
+./setup-port.sh
+./build-port.sh
+```
+
+WindowsのPowerShell版で実機向けビルドを確認しています。Linux / macOS版は同じ処理を移植したもので、このリポジトリの検証環境では実行していません。
+
+`src/` は追加ボタン・音処理・色処理、`patches/` はCamera2互換処理、`tools/patch_port.py` は展開コードへの変更です。出力は `out/xperia-camera-sc51g-test.apk`。ローカル署名鍵は初回ビルド時に `keys/port-test.jks` に生成されます。過去に配布したv0.2のAPKとは鍵が異なるため、そのまま上書き更新はできません。
 
 色計算の再実行にはNumPyとPillow、および [色処理の説明](COLOR-PROCESSING.md) に記載の参照画像を `analysis/color-reference/galaxy-chart.jpg` と `analysis/color-reference/xperia-chart.jpg` に用意し、`python tools/fit-color-reference.py` を実行してください。参照画像そのものは含めていません。
 
@@ -113,7 +133,7 @@ JDK 17、Python 3、Android SDK（platforms/android-35、build-tools/36.0.0）�
 
 Sony / Samsungの公式プロジェクトではありません。提供APKを土台にした互換性の試作であり、Sony純正ISPの移植や全機能の動作を保証するものではありません。Sony由来のアプリ本体・名称・画像・音源などの権利は元の権利者に帰属します。本リポジトリはそれらに新しい利用許諾を与えるものではありません。
 
-秘密鍵、端末の接続情報、実機ログ、テスト写真・動画、展開済みの元コードは含めていません。APKはリリースのAssetsで配布します。網羅的なデバッグは行っていません。
+秘密鍵、端末の接続情報、実機ログ、テスト写真・動画、展開済みの元コードは含めていません。APKは配布しません（[配布方針](#配布方針)）。網羅的なデバッグは行っていません。
 
 参考：[Android公式 Multi-camera API](https://developer.android.com/media/camera/camera2/multi-camera)、[ドコモ SC-51G仕様](https://www.docomo.ne.jp/product/sc51g/spec.html)。
 
@@ -125,31 +145,32 @@ Sony / Samsungの公式プロジェクトではありません。提供APKを土
 
 **Bring the Xperia camera UI to Galaxy S26. Zoom with the volume keys and adjust color and shutter sound.**
 
-[![Download APK](https://img.shields.io/badge/Download-APK-3DDC84?logo=android&logoColor=white)](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2)
+![Distribution](https://img.shields.io/badge/Distribution-Source_only-blue)
 ![Device](https://img.shields.io/badge/Galaxy_S26-SC--51G-1428A0)
 ![Status](https://img.shields.io/badge/Status-Experimental-orange)
 
 An unofficial project exploring the Xperia camera interface on Galaxy S26. It provides rear 0.6× / 1× / 3× zoom presets, volume-key zoom, adjustable shutter sound, warm/cool controls and experimental color correction for saved photos.
 
-→ **[Download APK](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2)** · [Color-processing details (Japanese)](COLOR-PROCESSING.md)
+→ **No APK is distributed.** [Build it yourself](#building-locally) · [Distribution policy](#distribution-policy) · [Color-processing details (Japanese)](COLOR-PROCESSING.md)
 
 ### v0.2: Color controls
 
-The latest APK is `xperia-camera-sc51g-oneui9-v0.2.apk`, available under **Assets** on the [Releases page](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases). It is published as an experimental prerelease.
-
-The warm/cool calculation found in the supplied APK is now connected to standard Camera2 controls. A new **「色」 (Color)** button provides photo correction derived from published comparison charts. This optional correction is **off by default**. See [COLOR-PROCESSING.md (Japanese)](COLOR-PROCESSING.md) for sources, measurements and implementation details. This project does not port Sony's complete imaging engine.
+The warm/cool calculation found in the supplied APK is now connected to standard Camera2 controls. A new **「色」 (Color)** button provides photo correction derived from published comparison charts. This optional correction is **off by default**. **No prebuilt APK is distributed**; the repository publishes the sources, patches and build scripts, and you build it yourself (see [Distribution policy](#distribution-policy)). See [COLOR-PROCESSING.md (Japanese)](COLOR-PROCESSING.md) for sources, measurements and implementation details. This project does not port Sony's complete imaging engine. The device results below were obtained from a build made on 2026-11-03.
 
 The tested device is **Galaxy S26 SC-51G, Android 17 (API 37) / One UI 9**. The input is `camera-2-9-a-0-24.apk`, package `com.sonyericsson.android.camera`, displayed version `2.9.A.0.24`. The input file is preserved unchanged. It already contained modifications, including fixed camera IDs and zoom changes; it has not been verified as an untouched official Sony binary.
 
-### Installation
+### Building and installing
 
-1. Download `xperia-camera-sc51g-oneui9-v0.2.apk` from **Assets** on the [v0.2 release page](https://github.com/burugou05-wq/xperia-camera-galaxys26/releases/tag/v0.2).
-2. Open the APK on your phone and follow the installation prompts.
-3. Launch the app and grant the camera, microphone and other permissions needed for capture.
+No APK is distributed. You install a build you make yourself; see [Building locally](#building-locally) for the full procedure.
 
-Installation may fail if another app with the package name `com.sonyericsson.android.camera` is installed with a different signature. This project's previous release and the published v0.2 APK use the same signing key.
+1. Obtain a matching `camera-2-9-a-0-24.apk` and place it in the repository root.
+2. Run `setup-port.ps1` then `build-port.ps1` on Windows, or `setup-port.sh` then `build-port.sh` on Linux / macOS.
+3. Copy `out/xperia-camera-sc51g-test.apk` to the phone and install it.
+4. Launch the app and grant the camera, microphone and other permissions needed for capture.
 
-Release APK SHA-256: `155c4b3474ac8034cb5fe94a766b3ec0bf253702d4d192d3bce15de665628b0f` (also in [SHA256SUMS](SHA256SUMS)).
+Installation may fail if another app with the package name `com.sonyericsson.android.camera` is installed with a different signature. A local build generates `keys/port-test.jks` on first use and signs with that key, so it cannot update an installation of the APK previously published as v0.2.
+
+For reference only: the SHA-256 of the v0.2 APK that was published on 2026-11-03 is `155c4b3474ac8034cb5fe94a766b3ec0bf253702d4d192d3bce15de665628b0f`. It is kept so that copies already downloaded can be checked; it is no longer distributed.
 
 ### Controls
 
@@ -205,9 +226,19 @@ This is a prototype port for running the supplied camera app on Galaxy. Its inte
 - Device tests saved 4000 × 3000 JPEGs with correction at 35%; the measured extra processing time was approximately 215–291 ms. Decoding and EXIF orientation retention were checked. Warm/cool adjustments were also checked for repeated changes without accumulating the correction and for return to automatic white balance.
 - Test photos and short videos on the device were not automatically deleted.
 
+### Distribution policy
+
+This repository **does not distribute an APK**. What is published here is the patch set, the added code, the build scripts and the test record.
+
+Redistributing a modified, re-signed APK to the public goes beyond the permission the rights holders granted for Sony-derived app code, sounds and images. The APK published as v0.2 was therefore withdrawn on 2026-11-07. For the same reason, mirrors and re-uploads of built APKs are not provided.
+
+- Build it yourself, on your own device, from a matching APK you obtained legitimately (see [Building locally](#building-locally)).
+- Keep any build you make for your own device and do not redistribute it.
+- Only the compatibility diff and prototype code live here. This is not an official Sony or Samsung project.
+
 ### Building locally
 
-Requirements: **JDK 17, Python 3, Android SDK** (`platforms/android-35` and `build-tools/36.0.0`), and [Apktool 3.0.3](https://github.com/iBotPeaches/Apktool/releases/tag/v3.0.3). Place its JAR at `tools/apktool.jar`. The scripts locate the SDK through `ANDROID_SDK_ROOT`, `ANDROID_HOME`, or the default Windows location.
+Requirements: **JDK 17, Python 3, Android SDK** (`platforms/android-35` and `build-tools/36.0.0`), and [Apktool 3.0.3](https://github.com/iBotPeaches/Apktool/releases/tag/v3.0.3). Place its JAR at `tools/apktool.jar`. The scripts locate the SDK through `ANDROID_SDK_ROOT`, `ANDROID_HOME`, or the platform default (`%LOCALAPPDATA%\Android\Sdk` on Windows, `~/Library/Android/sdk` on macOS, `~/Android/Sdk` on Linux).
 
 The input APK is not included in this repository. Place an appropriately obtained matching `camera-2-9-a-0-24.apk` in the project root. Patching other versions is unsupported.
 
@@ -218,17 +249,24 @@ Input APK SHA-256: `04a7b4c30259ab0cc1466addf38a6be5dff904b74f8c40cf4e60551a5038
 .\build-port.ps1
 ```
 
+```bash
+./setup-port.sh
+./build-port.sh
+```
+
+The PowerShell scripts are the ones used for the verified device builds. The Linux / macOS scripts are a port of the same steps and were not executed in this project's verification environment.
+
 `src/` contains the added controls, sound handling and color processing; `patches/` contains Camera2 compatibility helpers; `tools/patch_port.py` modifies the decoded code. The output is `out/xperia-camera-sc51g-test.apk`.
 
-A local signing key is generated at `keys/port-test.jks` on the first build. It differs from the published APK's key, so a local build cannot directly update an installation of that release.
+A local signing key is generated at `keys/port-test.jks` on the first build. It differs from the key of the v0.2 APK that was previously published, so a local build cannot directly update an existing installation of it.
 
 To rerun the color fit, install NumPy and Pillow and obtain the reference images linked in [COLOR-PROCESSING.md](COLOR-PROCESSING.md). Save them as `analysis/color-reference/galaxy-chart.jpg` and `analysis/color-reference/xperia-chart.jpg`, then run `python tools/fit-color-reference.py`. The reference images themselves are not included.
 
-### About the published files
+### About this repository
 
 This is **not an official Sony or Samsung project**. It is a compatibility prototype based on a supplied APK; it does not guarantee a Sony ISP port or complete feature support. Rights to Sony-derived app components, names, images and sounds remain with their respective owners. This repository does not grant a new license to those materials.
 
-The repository excludes private signing keys, device connection information, device logs, test photos/videos and the decoded original code. The APK is distributed through release Assets. Comprehensive debugging has not been performed.
+The repository excludes private signing keys, device connection information, device logs, test photos/videos and the decoded original code. No APK is distributed (see [Distribution policy](#distribution-policy)). Comprehensive debugging has not been performed.
 
 References: [Android Multi-camera API](https://developer.android.com/media/camera/camera2/multi-camera), [NTT DOCOMO SC-51G specifications (Japanese)](https://www.docomo.ne.jp/product/sc51g/spec.html).
 
