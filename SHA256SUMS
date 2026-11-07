@@ -1,1 +1,9 @@
-155c4b3474ac8034cb5fe94a766b3ec0bf253702d4d192d3bce15de665628b0f  xperia-camera-sc51g-oneui9-v0.2.apk
+# 本リポジトリはビルド済みAPKを配布していません（README の「配布方針」を参照）。
+# This repository distributes no prebuilt APK; see the distribution policy in README.md.
+
+# ビルドに使う入力APK（各自で用意）/ input APK you supply yourself
+04a7b4c30259ab0cc1466addf38a6be5dff904b74f8c40cf4e60551a50386d7c  camera-2-9-a-0-24.apk
+
+# 参考: 2026-11-03に配布し、2026-11-07に取り下げたv0.2 APKの値
+# reference only: v0.2 APK published 2026-11-03, withdrawn 2026-11-07
+# 155c4b3474ac8034cb5fe94a766b3ec0bf253702d4d192d3bce15de665628b0f  xperia-camera-sc51g-oneui9-v0.2.apk
